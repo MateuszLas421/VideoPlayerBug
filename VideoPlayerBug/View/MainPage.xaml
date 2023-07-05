@@ -1,0 +1,93 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="VideoPlayerBug.View.MainPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:VideoPlayerBug.View"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:CarouselImageSelector x:Key="TemplateSelector" />
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ScrollView>
+        <VerticalStackLayout
+            VerticalOptions="Center">
+            <CarouselView
+                x:Name="mediaCarousel"
+                IndicatorView="indicatorView"
+                ItemTemplate="{StaticResource TemplateSelector}"
+                ItemsSource="{Binding Items}" />
+
+            <IndicatorView
+                x:Name="indicatorView"
+                Margin="0,0,0,0"
+                HorizontalOptions="Center"
+                IndicatorColor="Red"
+                IndicatorsShape="Circle"
+                SelectedIndicatorColor="Blue" />
+
+
+            <!--<toolkit:MediaElement
+                x:Name="video"
+                Aspect="AspectFit"
+                HeightRequest="200"
+                ShouldAutoPlay="True"
+                Source="https://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4" />-->
+
+            <!--ObjCRuntime.ObjCException: 'Objective-C exception thrown.  Name: UIViewControllerHierarchyInconsistency Reason: child view controller:
+            <AVPlayerViewController: 0x7f8d5e9c4000>should have parent view controller:
+                <Microsoft_Maui_Controls_Handlers_Items_CarouselViewController: 0x7f8d5c20e120>but actual parent is:
+                    <Microsoft_Maui_Controls_Platform_Compatibility_ShellFlyoutRenderer: 0x7f8d5b37cdc0>
+                        Native stack trace:
+	0   CoreFoundation                      0x00000001103e178b __exceptionPreprocess + 242
+	1   libobjc.A.dylib                     0x000000011f87eb73 objc_exception_throw + 48
+	2   CoreFoundation                      0x00000001103e1669 -[NSException initWithCoder:] + 0
+	3   UIKitCore                           0x000000012d6d1222 -[UIView(Hierarchy) _associatedViewControllerForwardsAppearanceCallbacks:performHierarchyCheck:isRoot:] + 299
+	4   UIKitCore                           0x000000012d6d1af0 -[UIView(Hierarchy) _willMoveToWindow:withAncestorView:] + 257
+	5   UIKitCore                           0x000000012d6d29c0 _makeSubTreePerformSelector + 661
+	6   UIKitCore                           0x000000012d6d2a0a _makeSubTreePerformSelector + 735
+	7   UIKitCore                           0x000000012d6d2a0a _makeSubTreePerformSelector + 735
+	8   UIKitCore                           0x000000012d6d2a0a _makeSubTreePerformSelector + 735
+	9   UIKitCore                           0x000000012d6d2a0a _makeSubTreePerformSelector + 735
+	10  UIKitCore                           0x000000012d6e25da -[UIView(Internal) _addSubview:positioned:relativeTo:] + 502
+	11  UIKitCore                           0x000000012d666fe6 -[UIScrollView _addContentSubview:atBack:] + 566
+	12  UIKitCore                           0x000000012c5916cf -[UICollectionView _addControlledSubview:atZIndex:forced:initialAttributes:] + 970
+	13  UIKitCore                           0x000000012c59690c -[UICollectionView _createPreparedCellForItemAtIndexPath:withLayoutAttributes:applyAttributes:isFocused:notify:] + 2150
+	14  UIKitCore                           0x000000012c5960a0 -[UICollectionView _createPreparedCellForItemAtIndexPath:withLayoutAttributes:applyAttributes:] + 31
+	15  UIKitCore                           0x000000012c5a15c7 -[UICollectionView _createVisibleViewsForSingleCategoryAttributes:limitCreation:fadeForBoundsChange:] + 1774
+	16  UIKitCore                           0x000000012c5a1b0b -[UICollectionView _createVisibleViewsForAttributes:fadeForBoundsChange:notifyLayoutForVisibleCellsPass:] + 376
+	17  UIKitCore                           0x000000012c59f7c3 -[UICollectionView _updateVisibleCellsNow:] + 2372
+	18  UIKitCore                           0x000000012c5a6ad0 -[UICollectionView layoutSubviews] + 375
+	19  UIKitCore                           0x000000012d6e9083 -[UIView(CALayerDelegate) layoutSublayersOfLayer:] + 2313
+	20  QuartzCore                          0x000000011bfcfd98 _ZN2CA5Layer16layout_if_neededEPNS_11TransactionE + 526
+	21  QuartzCore                          0x000000011bfdb849 _ZN2CA5Layer28layout_and_display_if_neededEPNS_11TransactionE + 65
+	22  QuartzCore                          0x000000011beeb15e _ZN2CA7Context18commit_transactionEPNS_11TransactionEdPd + 624
+	23  QuartzCore                          0x000000011bf21805 _ZN2CA11Transaction6commitEv + 723
+	24  UIKitCore                           0x000000012d0ce578 __34-[UIApplication _firstCommitBlock]_block_invoke_2 + 34
+	25  CoreFoundation                      0x000000011033f986 __CFRUNLOOP_IS_CALLING_OUT_TO_A_BLOCK__ + 12
+	26  CoreFoundation                      0x000000011033f148 __CFRunLoopDoBlocks + 399
+	27  CoreFoundation                      0x00000001103399cf __CFRunLoopRun + 910
+	28  CoreFoundation                      0x0000000110339264 CFRunLoopRunSpecific + 560
+	29  GraphicsServices                    0x000000012511924e GSEventRunModal + 139
+	30  UIKitCore                           0x000000012d0ae7bf -[UIApplication _run] + 994
+	31  UIKitCore                           0x000000012d0b35de UIApplicationMain + 123
+	32  libxamarin-dotnet-debug.dylib       0x000000010d72264a xamarin_UIApplicationMain + 58
+	33  libmonosgen-2.0.dylib               0x000000010df305c9 do_icall + 345
+	34  libmonosgen-2.0.dylib               0x000000010df2f0d3 do_icall_wrapper + 291
+	35  libmonosgen-2.0.dylib               0x000000010df214cf interp_exec_method + 3295
+	36  libmonosgen-2.0.dylib               0x000000010df1ee23 interp_runtime_invoke + 259
+	37  libmonosgen-2.0.dylib               0x000000010dd44258 mono_runtime_invoke_checked + 136
+	38  libmonosgen-2.0.dylib               0x000000010dd4c26c do_exec_main_checked + 92
+	39  libmonosgen-2.0.dylib               0x000000010de7ae12 mono_jit_exec + 354
+	40  libxamarin-dotnet-debug.dylib       0x000000010d766c77 xamarin_main + 1927
+	41  VideoPlayerBug                      0x00000001047e3704 main + 68
+	42  dyld                                0x000000010d2ec384 start_sim + 10
+	43  ???                                 0x0000000204d9b41f 0x0 + 8671310879
+'-->
+
+
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>

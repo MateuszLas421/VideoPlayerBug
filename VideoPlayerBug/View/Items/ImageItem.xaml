@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="VideoPlayerBug.View.Items.ImageItem"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="150" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+        </Grid.ColumnDefinitions>
+        <Image
+            x:Name="image"
+            Grid.Row="0"
+            Grid.Column="0"
+            Margin="0,5,0,0"
+            Aspect="AspectFit"
+            Source="https://raw.githubusercontent.com/dotnet/maui/main/Assets/icon.png" />
+    </Grid>
+</ContentView>
