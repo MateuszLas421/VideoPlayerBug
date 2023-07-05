@@ -11,8 +11,7 @@
         </ResourceDictionary>
     </ContentPage.Resources>
     <ScrollView>
-        <VerticalStackLayout
-            VerticalOptions="Center">
+        <VerticalStackLayout>
             <CarouselView
                 x:Name="mediaCarousel"
                 IndicatorView="indicatorView"
@@ -21,8 +20,6 @@
 
             <IndicatorView
                 x:Name="indicatorView"
-                Margin="0,0,0,0"
-                HorizontalOptions="Center"
                 IndicatorColor="Red"
                 IndicatorsShape="Circle"
                 SelectedIndicatorColor="Blue" />
